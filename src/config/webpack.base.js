@@ -3,22 +3,31 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const webpack = require('webpack');
+const process=require("process");
 
-const RENDERER_ENTRY=path.resolve(__dirname,"../src/renderer/index.js");
-// const MAIN_PATH=path.resolve(__dirname,"../src/main/main.js");
+const RENDERER_ENTRY=path.resolve(process.cwd(),"./src/renderer/index.js");
 
 module.exports = {
   entry: {
     renderer: RENDERER_ENTRY,
-    // main: MAIN_PATH,
   },
   output: {
-    path: path.resolve(__dirname, '../dist/renderer'),
+    path: path.resolve(process.cwd(), './dist/renderer'),
     filename: '[name].bundle.js',
 
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+    modules: [
+      path.resolve(__dirname, '../../node_modules'), 
+      'node_modules', 
+    ],
+  },
+  resolveLoader: {
+    modules: [
+      path.resolve(__dirname, '../../node_modules'), 
+      'node_modules', 
+    ],
   },
   module: {
     rules: [
@@ -64,7 +73,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname,"../src/renderer/index.html"),
+      template: path.resolve(process.cwd(),"./src/renderer/index.html"),
       filename: 'index.html',
       inject: 'body', 
     }),

@@ -34,42 +34,21 @@
     "asar": true
   },
   "scripts": {
-    "start-main": "cross-env NODE_ENV=development electron .",
-    "start-renderer": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
-    "start-dev": "node scripts/start-dev.js",
-    "build-renderer": "webpack --config config/webpack.prod.js",
-    "build-main": "cross-env NODE_ENV=production webpack --config config/webpack.main.prod.js",
-    "gen-exe": "npm run build-renderer && npm run build-main && electron-builder --win"
+    "start-main": "erc-cli start-main",
+    "start-renderer": "erc-cli start-renderer",
+    "start-dev": "erc-cli start-dev",
+    "build-renderer": "erc-cli build-renderer",
+    "build-main": "erc-cli build-main",
+    "gen-exe": "erc-cli gen-exe",
+    "eject": "erc-cli eject"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.7",
-    "@babel/preset-env": "^7.26.7",
-    "@babel/preset-react": "^7.26.3",
-    "@reduxjs/toolkit": "^2.5.1",
-    "babel-loader": "^9.2.1",
     "buffer": "^6.0.3",
-    "clean-webpack-plugin": "^4.0.0",
-    "cross-env": "^7.0.3",
-    "css-loader": "^7.1.2",
     "electron": "^34.0.1",
     "electron-builder": "^25.1.8",
-    "global": "^4.4.0",
-    "html-loader": "^5.1.0",
-    "html-webpack-plugin": "^5.6.3",
-    "node-polyfill-webpack-plugin": "^4.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-activation": "^0.13.0",
-    "react-dom": "^18.3.1",
-    "sass": "^1.83.4",
-    "sass-loader": "^16.0.4",
-    "stream-browserify": "^3.0.0",
-    "style-loader": "^4.0.0",
-    "text-encoding": "^0.7.0",
-    "util": "^0.12.5",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0",
-    "webpack-merge": "^6.0.1"
+    "react-dom": "^18.3.1"
   }
 }

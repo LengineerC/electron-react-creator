@@ -1,19 +1,46 @@
 {
-  "name": "electron-react-creator",
+  "name": "erc-cli",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
+  "bin": {
+    "erc-cli": "./dist/index.js"
+  },
   "scripts": {
-    "start": "tsc && node dist/index.js"
+    "start": "ts-node src/index.ts",
+    "build": "ts-node src/commands/build.ts",
+    "eject":"ts-node src/scripts/eject.ts",
+    "link": "npm run build && npm link",
+    "unlink": "npm unlink -g erc-cli && npm unlink erc-cli"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.26.7",
+    "@babel/preset-env": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^9.0.7",
     "@types/node": "^22.13.4",
-    "typescript": "^5.7.3"
+    "babel-loader": "^9.2.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.2",
+    "global": "^4.4.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "node-polyfill-webpack-plugin": "^4.1.0",
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.4",
+    "style-loader": "^4.0.0",
+    "text-encoding": "^0.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "webpack": "5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "execa": "^9.5.2",

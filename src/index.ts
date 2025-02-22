@@ -1,33 +1,46 @@
+#!/usr/bin/env node
+
 import * as fsExtra from 'fs-extra';
 import path from 'path';
 import * as process from "process";
 import { input } from "@inquirer/prompts";
-import { FILENAME_PATTERN } from './utils/pattern';
+import { FILENAME_PATTERN } from './utils/patterns';
 import { execSync } from 'child_process';
+import { COMMANDS } from './utils/commands';
+import { startDev, startMain, startRenderer } from './scripts/start';
+import { buildMain, buildRenderer, genExe } from './scripts/build';
+import eject from './scripts/eject';
+
+function verifyProjectName(projectName:string):boolean{
+  const resourceNames = fsExtra.readdirSync(process.cwd());
+
+  if (!FILENAME_PATTERN.test(projectName)) {
+    console.error("Invalid name, please input again!");
+
+    return false;
+  }
+
+  let existSameName: boolean = false;
+  if (resourceNames.includes(projectName)) {
+    if (fsExtra.readdirSync(path.join(process.cwd(), projectName)).length !== 0) {
+      existSameName = true;
+    }
+  }
+
+  if (existSameName) {
+    console.error(`A project with the name "${projectName}" already exists! Please choose a different name.`);
+    return false;
+  }
+
+  return true;
+}
 
 async function getProjectName(): Promise<string> {
   let projectName: string = "";
 
   while (true) {
     projectName = await input({ message: "Input the project name:" });
-    const resourceNames = fsExtra.readdirSync(process.cwd());
-
-    if (!FILENAME_PATTERN.test(projectName)) {
-      console.error("Invalid name, please input again!");
-      continue;
-    }
-
-    let existSameName: boolean = false;
-    if (resourceNames.includes(projectName)) {
-      if (fsExtra.readdirSync(path.join(process.cwd(), projectName)).length !== 0) {
-        existSameName = true;
-      }
-    }
-
-    if (existSameName) {
-      console.error(`A project with the name "${projectName}" already exists! Please choose a different name.`);
-      continue;
-    }
+    if(!verifyProjectName(projectName)) continue;
 
     break;
   }
@@ -63,16 +76,49 @@ function installDependencies(projectPath: string): void {
   }
 }
 
-async function main(): Promise<void> {
+async function main(args:string[]): Promise<void> {
   try {
-    const projectName = await getProjectName();
-    const projectPath = path.join(process.cwd(), projectName);
+    switch(args[0]){
+      case COMMANDS.CREATE:{
+        const projectName = args[1] || await getProjectName();
+        const projectPath = path.join(process.cwd(), projectName);
+    
+        if (!fsExtra.existsSync(projectPath)) {
+          fsExtra.mkdirSync(projectPath);
+        }
+        copyTemplate(projectPath);
+        installDependencies(projectPath);
 
-    if (!fsExtra.existsSync(projectPath)) {
-      fsExtra.mkdirSync(projectPath);
+        break;
+      }
+
+      case COMMANDS.START_DEV:
+        startDev();
+        break;
+
+      case COMMANDS.START_MAIN:
+        startMain();
+        break;
+
+      case COMMANDS.START_RENDERER:
+        startRenderer();
+        break;
+
+      case COMMANDS.BUILD_MAIN:
+        buildMain();
+        break;
+
+      case COMMANDS.BUILD_RENDERER:
+        buildRenderer();
+        break;
+
+      case COMMANDS.GEN_EXE:
+        genExe();
+        break;
+
+      case COMMANDS.EJECT:
+        eject();
     }
-    copyTemplate(projectPath);
-    installDependencies(projectPath);
 
   } catch (err) {
     if (err instanceof Error && err.name === 'ExitPromptError') {
@@ -84,4 +130,4 @@ async function main(): Promise<void> {
   }
 }
 
-main();
+main(process.argv.slice(2));

@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron/main');
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -11,7 +12,7 @@ const createWindow = () => {
     win.webContents.openDevTools();
     
   }else{
-    const indexPath=path.join(__dirname,"./dist/renderer/index.html");
+    const indexPath=path.join(__dirname,"../../dist/renderer/index.html");
     
     win.loadFile(indexPath);
 
