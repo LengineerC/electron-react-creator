@@ -32,8 +32,21 @@ export function buildRenderer():void{
   execSync(`webpack --config ${buildRendererWebpackConfigPath}`,{stdio:"inherit",...execOpt});
 }
 
-export function genExe():void{
+// export function genExe():void{
+//   buildRenderer();
+//   buildMain();
+//   execSync("electron-builder --win",{stdio:"inherit",...execOpt});
+// }
+
+// export function releaseLinux():void{
+//   buildRenderer();
+//   buildMain();
+//   execSync("electron-builder --linux",{stdio:"inherit",...execOpt});
+// }
+
+export function release(args:string[]):void{
   buildRenderer();
   buildMain();
-  execSync("electron-builder --win",{stdio:"inherit",...execOpt});
+  
+  execSync(`electron-builder ${args.join(' ')}`,{stdio:"inherit",...execOpt});
 }

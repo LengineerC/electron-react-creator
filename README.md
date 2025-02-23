@@ -14,6 +14,9 @@ new-project/
 |
 |- dist                 # build outFile
 |- release              # Application out file
+|- .babelrc
+|- package.json
+|- README.md
 ```
 
 ### 🎁Install
@@ -22,6 +25,7 @@ new-project/
 
 ### 🚀Start to develop
 - Check cli version: `ercli --version` or `ercli -v`
+- Help: `ercli help`
 
 - Create a new project: `ercli create <project-name>`
 - Run both of main and renderer processes: `npm run start-dev`
@@ -31,7 +35,7 @@ new-project/
 - renderer process: `npm run start-renderer`
 
 ### 📦Build
-- Build as a nsis installer: `npm run gen-exe`
+- Release: `npm run release` or `ercli release`, arguments are same as electron-builder
 
 **Build processes separately:**
 - main process: `npm run build-main`

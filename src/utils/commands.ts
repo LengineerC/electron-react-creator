@@ -5,9 +5,11 @@ export const COMMANDS={
     START_RENDERER:"start-renderer",
     BUILD_MAIN:"build-main",
     BUILD_RENDERER:"build-renderer",
-    GEN_EXE:"gen-exe",
+    // GEN_EXE:"gen-exe",
+    RELEASE:"release",
     EJECT:"eject",
-
+    
+    HELP:"help",
     VERSION:"--version",
     VERSION_SHORT:"-v",
 }

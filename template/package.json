@@ -4,6 +4,7 @@
     "name": "Author",
     "email": "youremail@email.com"
   },
+  "homepage": "https://github.com/yourusername/your-repo",
   "name": "app-name",
   "version": "1.0.0",
   "main": "src/main/main.js",
@@ -15,6 +16,10 @@
       "src/main/**/*"
     ],
     "mac": {
+      "target":[
+        "dmg",
+        "zip"
+      ],
       "category": "your.app.category.type"
     },
     "win": {
@@ -26,6 +31,13 @@
       "oneClick": false,
       "perMachine": true,
       "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ],
+      "category": "Utility"
     },
     "directories": {
       "output": "release"
@@ -39,7 +51,7 @@
     "start-dev": "ercli start-dev",
     "build-renderer": "ercli build-renderer",
     "build-main": "ercli build-main",
-    "gen-exe": "ercli gen-exe",
+    "release": "ercli release",
     "eject": "ercli eject"
   },
   "devDependencies": {

@@ -8,7 +8,7 @@ import { FILENAME_PATTERN } from './utils/patterns';
 import { execSync } from 'child_process';
 import { COMMANDS } from './utils/commands';
 import { startDev, startMain, startRenderer } from './scripts/start';
-import { buildMain, buildRenderer, genExe } from './scripts/build';
+import { buildMain, buildRenderer, release } from './scripts/build';
 import eject from './scripts/eject';
 
 function verifyProjectName(projectName:string):boolean{
@@ -85,6 +85,31 @@ async function main(args:string[]): Promise<void> {
         console.log(`ercli version: ${version}`);
         break;
 
+      case COMMANDS.HELP:
+        const helpInfo=`
+        Electron React Creator help:
+        - Check cli version: ercli --version or ercli -v
+
+        Create:
+        - Create a new project: ercli create <project-name>
+        - Run both of main and renderer processes: npm run start-dev
+
+        Start:
+        - main process: npm run start-main
+        - renderer process: npm run start-renderer
+
+        Build:
+        - Build as a nsis installer: npm run gen-exe
+        - main process: npm run build-main
+        - renderer process: npm run build-renderer
+
+        Eject:
+        - You can run npm run eject to expose client webpack configurations, then you can edit it 
+        - npm run start-dev will disabled after ejecting
+        `;
+        console.log(helpInfo);
+        break;
+
       case COMMANDS.CREATE:{
         const projectName = args[1] || await getProjectName();
         const projectPath = path.join(process.cwd(), projectName);
@@ -118,12 +143,16 @@ async function main(args:string[]): Promise<void> {
         buildRenderer();
         break;
 
-      case COMMANDS.GEN_EXE:
-        genExe();
+      case COMMANDS.RELEASE:
+        release(args.splice(1));
         break;
 
       case COMMANDS.EJECT:
         eject();
+        break;
+
+      default:
+        console.error("Unknown command!");
     }
 
   } catch (err) {
