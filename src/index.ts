@@ -79,6 +79,12 @@ function installDependencies(projectPath: string): void {
 async function main(args:string[]): Promise<void> {
   try {
     switch(args[0]){
+      case COMMANDS.VERSION:
+      case COMMANDS.VERSION_SHORT:
+        const version=JSON.parse(fsExtra.readFileSync(path.resolve(__dirname,"../package.json")).toString())["version"];
+        console.log(`ercli version: ${version}`);
+        break;
+
       case COMMANDS.CREATE:{
         const projectName = args[1] || await getProjectName();
         const projectPath = path.join(process.cwd(), projectName);

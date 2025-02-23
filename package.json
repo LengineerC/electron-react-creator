@@ -4,7 +4,7 @@
     "type": "github",
     "url": "https://github.com/LengineerC/electron-react-creator"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "src/index.ts",
   "bin": {

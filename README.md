@@ -21,6 +21,9 @@ new-project/
 - yarn: `yarn global add electron-react-reator`
 
 ### 🚀Start to develop
+- Check cli version: `ercli --version` or `ercli -v`
+
+- Create a new project: `ercli create <project-name>`
 - Run both of main and renderer processes: `npm run start-dev`
 
 **If you want to run processes separately:**
@@ -36,7 +39,7 @@ new-project/
 
 ### 💣Eject
 - You can run `npm run eject` to expose client webpack configurations, then you can edit it
-- <u>**`npm run start-dev` unavailable** after ejecting.</u>
+- <u>**`npm run start-dev` will disabled** after ejecting</u>
 
 
 ## Updating...

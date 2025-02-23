@@ -7,4 +7,7 @@ export const COMMANDS={
     BUILD_RENDERER:"build-renderer",
     GEN_EXE:"gen-exe",
     EJECT:"eject",
+
+    VERSION:"--version",
+    VERSION_SHORT:"-v",
 }
