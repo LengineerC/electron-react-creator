@@ -4,14 +4,14 @@
   "description": "",
   "main": "src/index.ts",
   "bin": {
-    "erc-cli": "./dist/index.js"
+    "erc-cli": "./bin/index.js"
   },
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "ts-node src/commands/build.ts",
-    "eject":"ts-node src/scripts/eject.ts",
     "link": "npm run build && npm link",
-    "unlink": "npm unlink -g erc-cli && npm unlink erc-cli"
+    "unlink": "npm unlink -g erc-cli && npm unlink erc-cli",
+    "prePublish": "npm run build"
   },
   "keywords": [],
   "author": "",

@@ -16,6 +16,10 @@ new-project/
 |- release              # Application out file
 ```
 
+### 🎁Install
+- npm: `npm install -g erc-cli`
+- yarn: `yarn global add erc-cli`
+
 ### 🚀Start to develop
 - Run both of main and renderer processes: `npm run start-dev`
 
