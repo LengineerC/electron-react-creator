@@ -1,10 +1,10 @@
 {
-  "name": "erc-cli",
+  "name": "electron-react-reator",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
   "bin": {
-    "erc-cli": "./bin/index.js"
+    "ercli": "bin/index.js"
   },
   "scripts": {
     "start": "ts-node src/index.ts",

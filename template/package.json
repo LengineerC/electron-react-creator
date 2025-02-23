@@ -34,13 +34,13 @@
     "asar": true
   },
   "scripts": {
-    "start-main": "erc-cli start-main",
-    "start-renderer": "erc-cli start-renderer",
-    "start-dev": "erc-cli start-dev",
-    "build-renderer": "erc-cli build-renderer",
-    "build-main": "erc-cli build-main",
-    "gen-exe": "erc-cli gen-exe",
-    "eject": "erc-cli eject"
+    "start-main": "ercli start-main",
+    "start-renderer": "ercli start-renderer",
+    "start-dev": "ercli start-dev",
+    "build-renderer": "ercli build-renderer",
+    "build-main": "ercli build-main",
+    "gen-exe": "ercli gen-exe",
+    "eject": "ercli eject"
   },
   "devDependencies": {
     "buffer": "^6.0.3",

@@ -17,8 +17,8 @@ new-project/
 ```
 
 ### 🎁Install
-- npm: `npm install -g erc-cli`
-- yarn: `yarn global add erc-cli`
+- npm: `npm install -g electron-react-reator`
+- yarn: `yarn global add electron-react-reator`
 
 ### 🚀Start to develop
 - Run both of main and renderer processes: `npm run start-dev`

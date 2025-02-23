@@ -7,7 +7,7 @@ try{
   execSync("tsc",{cwd:process.cwd()});    
 
   const webpackConfigDir=path.join(__dirname,"../config");
-  const distDir=path.join(process.cwd(),"./dist");
+  const distDir=path.join(process.cwd(),"./bin");
 
   fsExtra.copySync(webpackConfigDir,path.join(distDir,"config"));
 
